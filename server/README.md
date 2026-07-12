@@ -1,55 +1,52 @@
 # Phoenix API
 
-The **Phoenix API** is the backend service responsible for exposing REST endpoints, handling business logic, authentication, and data persistence.
+The **Phoenix API** is the backend application responsible for exposing REST endpoints, implementing business logic, handling authentication, and managing data persistence.
 
 ## Responsibilities
 
-* REST API
-* Authentication & Authorization (JWT)
-* Business logic
-* Data validation
-* Database access
-* Project history
-* Statistics generation
-* Centralized error handling
+- REST API
+- Authentication & Authorization
+- Business logic
+- Data validation
+- Database access
+- Project history management
+- Statistics generation
+- Centralized error handling
 
 ## Tech Stack
 
-* ASP.NET Core
-* C#
-* Entity Framework Core
-* SQL Server
-* JWT Authentication
+- Java
+- JSP (JavaServer Pages)
+- Apache Tomcat
+- JDBC
+- SQL Database
+- JSON
 
-## Architecture
-
-```text
-API
- ├── Controllers
- ├── Services
- ├── Repositories
- ├── Domain
- └── Database
-```
-
-## Solution Structure
+## Project Structure
 
 ```text
 api/
-├── Phoenix.Api/
-├── Phoenix.Application/
-├── Phoenix.Domain/
-├── Phoenix.Infrastructure/
-├── Phoenix.Tests/
-└── Phoenix.sln
+├── src/
+├── WebContent/
+├── WEB-INF/
+├── controllers/
+├── services/
+├── repositories/
+├── models/
+└── README.md
 ```
 
 ## API Standards
 
-* RESTful architecture
-* JSON responses
-* JWT authentication
-* Versioned endpoints (`/api/v1/`)
-* Standard HTTP status codes
-* Consistent response format
-* CORS enabled
+- RESTful architecture
+- JSON request and response format
+- Versioned endpoints (`/api/v1/`)
+- Standard HTTP status codes
+- Consistent API response structure
+- CORS enabled
+
+## Notes
+
+- The API is deployed on Apache Tomcat.
+- Business rules are implemented on the server.
+- The client must access data only through the exposed REST endpoints.

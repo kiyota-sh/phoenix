@@ -1,51 +1,43 @@
 # Phoenix Client
 
-The **Phoenix Client** is the frontend application responsible for providing the user interface and interacting with the REST API.
+The **Phoenix Client** is the frontend application responsible for providing the user interface and consuming the Phoenix REST API.
 
 ## Responsibilities
 
-* User authentication
-* Project management
-* Dashboard
-* Progress tracking
-* Statistics and charts
-* Search and filtering
-* Session management
-* Responsive user interface
+- User authentication
+- Project management
+- Dashboard
+- Progress tracking
+- Statistics visualization
+- Search and filtering
+- Session management
+- Responsive user interface
 
 ## Tech Stack
 
-* React
-* TypeScript
-* Vite
-* Tailwind CSS
-* React Router
-* Axios
-* Chart.js
+- HTML5
+- CSS3
+- JavaScript (Vanilla)
+- Bootstrap 5
+- Fetch API
 
 ## Project Structure
 
 ```text
 client/
-├── public/
-├── src/
-│   ├── assets/
-│   ├── components/
-│   ├── pages/
-│   ├── services/
-│   ├── routes/
-│   ├── hooks/
-│   ├── contexts/
-│   ├── types/
-│   ├── utils/
-│   └── styles/
-├── package.json
+├── assets/
+│   ├── css/
+│   ├── js/
+│   └── images/
+├── pages/
+├── components/
+├── index.html
 └── README.md
 ```
 
 ## Notes
 
-* The client communicates exclusively through the REST API.
-* Business logic must remain on the backend.
-* API responses are expected in JSON format.
-* Progress calculations and statistics are provided by the API.
+- The client communicates exclusively with the REST API.
+- All requests are performed using the Fetch API.
+- Business logic and data processing are handled by the backend.
+- The frontend is responsible only for rendering data and handling the user experience.
