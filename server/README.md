@@ -1,6 +1,6 @@
 # Phoenix API
 
-The **Phoenix API** is the backend application responsible for exposing REST endpoints, implementing business logic, handling authentication, and managing data persistence.
+The **Phoenix API** is a RESTful backend application built with Java Servlets. It manages business logic, authentication, data persistence, and communication with the database.
 
 ## Responsibilities
 
@@ -16,7 +16,7 @@ The **Phoenix API** is the backend application responsible for exposing REST end
 ## Tech Stack
 
 - Java
-- JSP (JavaServer Pages)
+- Jakarta Servlets
 - Apache Tomcat
 - JDBC
 - SQL Database
@@ -27,12 +27,13 @@ The **Phoenix API** is the backend application responsible for exposing REST end
 ```text
 api/
 ├── src/
+│   ├── controllers/
+│   ├── services/
+│   ├── repositories/
+│   ├── models/
+│   └── utils/
 ├── WebContent/
 ├── WEB-INF/
-├── controllers/
-├── services/
-├── repositories/
-├── models/
 └── README.md
 ```
 
@@ -48,5 +49,6 @@ api/
 ## Notes
 
 - The API is deployed on Apache Tomcat.
-- Business rules are implemented on the server.
-- The client must access data only through the exposed REST endpoints.
+- Servlets expose REST endpoints consumed by the frontend.
+- JDBC is used for database connectivity.
+- Business rules and data processing are handled exclusively on the server.
