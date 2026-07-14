@@ -22,6 +22,11 @@ export const ENDPOINTS = {
     BY_PROJECT: (projectId) => `${API_PREFIX}/projects/${projectId}/progress`,
     DETAIL: (id) => `${API_PREFIX}/progress/${id}`,
   },
+  TASKS: {
+    BY_PROJECT: (projectId) => `${API_PREFIX}/projects/${projectId}/tasks`,
+    DETAIL: (id) => `${API_PREFIX}/tasks/${id}`,
+    TOGGLE: (id) => `${API_PREFIX}/tasks/${id}/toggle`,
+  },
   CATEGORIES: {
     BASE: `${API_PREFIX}/categories`,
     DETAIL: (id) => `${API_PREFIX}/categories/${id}`,
