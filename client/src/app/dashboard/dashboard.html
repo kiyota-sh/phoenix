@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="en" data-bs-theme="dark">
 
 <head>
     <meta charset="UTF-8" />
@@ -13,47 +13,34 @@
 <body>
     <nav-sidebar active="dashboard"></nav-sidebar>
 
-    <div class="app-shell">
-        <aside class="sidebar">
-            <a href="dashboard.html" class="wordmark"><span class="ember-dot"></span> Phoenix</a>
-            <ul class="sidebar-nav">
-                <li><a href="dashboard.html" class="active"><i class="bi bi-grid"></i> Dashboard</a></li>
-                <li><a href="projects.html"><i class="bi bi-folder2-open"></i> Projects</a></li>
-                <li><a href="categories.html"><i class="bi bi-tags"></i> Categories</a></li>
-                <li><a href="statistics.html"><i class="bi bi-bar-chart"></i> Statistics</a></li>
-                <li><a href="search.html"><i class="bi bi-search"></i> Search</a></li>
-                <li><a href="profile.html"><i class="bi bi-person-circle"></i> Profile</a></li>
-            </ul>
-            <div class="sidebar-footer">
-                <button id="logoutBtn" class="btn-ghost w-100"><i class="bi bi-box-arrow-right"></i> Log out</button>
+    <main class="container py-4">
+        <div class="d-flex justify-content-between align-items-start flex-wrap gap-3 mb-4">
+            <div>
+                <h1 class="h2 mb-1" id="greeting">Hello</h1>
+                <p class="text-secondary mb-0">Here's the state of your projects today.</p>
             </div>
-        </aside>
+            <a href="project-form.html" class="btn btn-primary"><i class="bi bi-plus-lg me-1"></i>New project</a>
+        </div>
 
-        <main class="main-content">
-            <div class="page-header">
-                <div>
-                    <h1 id="greeting">Hello</h1>
-                    <p>Here's the state of your projects today.</p>
-                </div>
-                <a href="project-form.html" class="btn-primary"><i class="bi bi-plus-lg"></i> New project</a>
-            </div>
+        <div id="alertContainer"></div>
 
-            <div id="alertContainer"></div>
+        <div id="summaryContainer" class="row row-cols-1 row-cols-md-3 g-3 mb-4"></div>
 
-            <div id="summaryContainer" class="project-grid mb-4"></div>
-
-            <div class="row g-4">
-                <div class="col-lg-7">
-                    <h2 class="section-title" style="margin-top:0;">Recent activity</h2>
-                    <div class="card-phoenix p-3" id="activityContainer"></div>
-                </div>
-                <div class="col-lg-5">
-                    <h2 class="section-title" style="margin-top:0;">Upcoming goals</h2>
-                    <div class="card-phoenix p-3" id="goalsContainer"></div>
+        <div class="row g-4">
+            <div class="col-lg-7">
+                <h2 class="h5 fst-italic">Recent activity</h2>
+                <div class="card">
+                    <div class="card-body p-0" id="activityContainer"></div>
                 </div>
             </div>
-        </main>
-    </div>
+            <div class="col-lg-5">
+                <h2 class="h5 fst-italic">Upcoming goals</h2>
+                <div class="card">
+                    <div class="card-body p-0" id="goalsContainer"></div>
+                </div>
+            </div>
+        </div>
+    </main>
 
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"></script>
     <script type="module" src="js/pages/dashboard.js"></script>

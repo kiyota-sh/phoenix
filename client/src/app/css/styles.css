@@ -1,4 +1,4 @@
-@import url("https://fonts.googleapis.com/css2?family=Fraunces:ital,wght@0,500;0,600;1,500;1,600&family=Inter:wght@400;500;600;700&family=IBM+Plex+Mono:wght@400;500&display=swap");
+@import url("https://fonts.googleapis.com/css2?family=Orbitron:wght@400..900&family=Roboto+Mono:ital,wght@0,100..700;1,100..700&family=Rubik:ital,wght@0,300..900;1,300..900&display=swap");
 
 [data-bs-theme="dark"] {
   --bs-body-bg: #18171d;
@@ -30,35 +30,37 @@
   --bs-danger: #e38080;
 }
 
-/* NOTE: if any Bootstrap component doesn't pick up a color, check the
-   exact variable name for your Bootstrap 5.3.x patch version in their
-   theming docs — a couple of variable names shifted between minor versions. */
+/* Tipografía */
 
 body {
-  font-family: "Inter", sans-serif;
+  font-family: "Rubik", sans-serif;
+  font-weight: 400;
 }
 
 h1,
 h2,
 h3,
 .font-display {
-  font-family: "Fraunces", serif;
-  font-style: italic;
-  font-weight: 600;
+  font-family: "Orbitron", sans-serif;
+  font-weight: 700;
+  letter-spacing: 0.03em;
 }
 
 .font-mono {
-  font-family: "IBM Plex Mono", monospace;
+  font-family: "Roboto Mono", monospace;
 }
 
 .wordmark {
   display: inline-flex;
   align-items: center;
   gap: 8px;
-  font-family: "Fraunces", serif;
-  font-style: italic;
-  font-weight: 600;
+
+  font-family: "Orbitron", sans-serif;
+  font-weight: 800;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
   font-size: 1.3rem;
+
   color: var(--bs-emphasis-color);
 }
 
@@ -88,19 +90,18 @@ h3,
   }
 }
 
-/* Small lift on hover for clickable project cards (Bootstrap's .card has no hover state) */
 .project-card {
   cursor: pointer;
   transition:
     transform 0.15s ease,
     box-shadow 0.15s ease;
 }
+
 .project-card:hover {
   transform: translateY(-2px);
   box-shadow: 0 8px 24px rgba(0, 0, 0, 0.35);
 }
 
-/* Gradient panel for the auth split screen */
 .auth-visual {
   background: linear-gradient(
     160deg,
@@ -122,4 +123,16 @@ h3,
 .offcanvas {
   background-color: var(--bs-tertiary-bg);
   color: var(--bs-body-color);
+}
+
+.nav-sidebar {
+  font-family: "Orbitron", sans-serif;
+  font-weight: 500;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+}
+
+.nav-sidebar .list-group-item {
+  padding: 0.9rem 1rem;
+  font-size: 0.85rem;
 }
