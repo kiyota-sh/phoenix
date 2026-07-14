@@ -10,7 +10,7 @@ import {
   mockUpdateProject,
   mockChangeProjectStatus,
   mockReopenProject,
-} from "../utils/mockData.js";
+} from "../../utils/mockData.js";
 
 export const projectService = {
   getAll: (filters = {}) =>

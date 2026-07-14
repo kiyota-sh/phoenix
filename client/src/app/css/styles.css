@@ -110,11 +110,11 @@ h3,
   );
 }
 
-@media (min-width: 992px) {
-  .main-content {
-    margin-left: 240px;
+/* @media (min-width: 992px) {
+  nav-sidebar + main {
+    margin-left: px;
   }
-}
+} */
 
 .list-group-item-action:hover {
   color: var(--bs-emphasis-color);

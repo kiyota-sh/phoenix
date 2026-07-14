@@ -1,0 +1,20 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8" />
+    <title>Phoenix</title>
+</head>
+
+<body>
+    <script type="module">
+        import { authService } from '../api/authService.js';
+        import { PATHS } from '../routes/paths.js';
+
+        authService.getProfile()
+            .then(() => { window.location.href = PATHS.DASHBOARD; })
+            .catch(() => { window.location.href = PATHS.LOGIN; });
+    </script>
+</body>
+
+</html>

@@ -8,7 +8,7 @@ import {
   mockLogout,
   mockGetProfile,
   mockUpdateProfile,
-} from "../utils/mockData.js";
+} from "../../utils/mockData.js";
 
 export const authService = {
   login: (credentials) =>

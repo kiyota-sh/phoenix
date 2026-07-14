@@ -6,7 +6,7 @@ import {
   mockGetStatsAbandonReasons,
   mockGetStatsCompletedByYear,
   mockGetAvgTimeToAbandon,
-} from "../utils/mockData.js";
+} from "../../utils/mockData.js";
 
 export const statisticsService = {
   getByCategory: () =>

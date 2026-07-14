@@ -5,7 +5,7 @@ import {
   mockGetProgressEntries,
   mockCreateProgressEntry,
   mockRemoveProgressEntry,
-} from "../utils/mockData.js";
+} from "../../utils/mockData.js";
 
 export const progressService = {
   getByProject: (projectId, filters = {}) =>

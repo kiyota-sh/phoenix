@@ -6,7 +6,7 @@ import {
   mockCreateTask,
   mockToggleTask,
   mockRemoveTask,
-} from "../utils/mockData.js";
+} from "../../utils/mockData.js";
 
 export const taskService = {
   getByProject: (projectId) =>

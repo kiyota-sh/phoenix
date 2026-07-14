@@ -5,7 +5,7 @@ import {
   mockGetDashboardSummary,
   mockGetRecentActivity,
   mockGetUpcomingGoals,
-} from "../utils/mockData.js";
+} from "../../utils/mockData.js";
 
 export const dashboardService = {
   getSummary: () =>

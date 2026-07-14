@@ -6,7 +6,7 @@ import {
   mockCreateCategory,
   mockUpdateCategory,
   mockRemoveCategory,
-} from "../utils/mockData.js";
+} from "../../utils/mockData.js";
 
 export const categoryService = {
   getAll: () =>
