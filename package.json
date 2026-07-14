@@ -1,0 +1,23 @@
+{
+  "name": "phoenix-backend",
+  "version": "1.0.0",
+  "description": "API REST de Phoenix - gestion de proyectos con historial de abandono",
+  "license": "ISC",
+  "author": "Albi Steed",
+  "type": "commonjs",
+  "main": "src/server.js",
+  "scripts": {
+    "start": "node src/server.js",
+    "dev": "node --watch src/server.js"
+  },
+  "dependencies": {
+    "bcrypt": "^5.1.1",
+    "cors": "^2.8.6",
+    "debug": "^4.4.3",
+    "dotenv": "^16.6.1",
+    "express": "^4.22.2",
+    "jsonwebtoken": "^9.0.3",
+    "pg": "^8.22.0",
+    "sequelize": "^6.37.8"
+  }
+}
