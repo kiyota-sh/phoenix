@@ -1,0 +1,125 @@
+@import url("https://fonts.googleapis.com/css2?family=Fraunces:ital,wght@0,500;0,600;1,500;1,600&family=Inter:wght@400;500;600;700&family=IBM+Plex+Mono:wght@400;500&display=swap");
+
+[data-bs-theme="dark"] {
+  --bs-body-bg: #18171d;
+  --bs-body-color: #f2edf7;
+  --bs-secondary-color: #b8afc9;
+  --bs-tertiary-bg: #221f2b;
+  --bs-secondary-bg: #221f2b;
+  --bs-border-color: #3a3550;
+  --bs-emphasis-color: #ffffff;
+
+  --bs-primary: #463671;
+  --bs-primary-rgb: 70, 54, 113;
+  --bs-primary-text-emphasis: #ebbaf2;
+  --bs-primary-bg-subtle: #29213f;
+  --bs-primary-border-subtle: #463671;
+
+  --bs-list-group-color: var(--bs-secondary-color);
+  --bs-list-group-active-bg: var(--bs-primary);
+  --bs-list-group-active-border-color: var(--bs-primary);
+  --bs-list-group-active-color: #fff;
+
+  --bs-link-color: #ebbaf2;
+  --bs-link-color-rgb: 235, 186, 242;
+  --bs-link-hover-color: #f2d1f7;
+
+  --bs-success: #6fbf97;
+  --bs-info: #6fa8d6;
+  --bs-warning: #d6a76f;
+  --bs-danger: #e38080;
+}
+
+/* NOTE: if any Bootstrap component doesn't pick up a color, check the
+   exact variable name for your Bootstrap 5.3.x patch version in their
+   theming docs — a couple of variable names shifted between minor versions. */
+
+body {
+  font-family: "Inter", sans-serif;
+}
+
+h1,
+h2,
+h3,
+.font-display {
+  font-family: "Fraunces", serif;
+  font-style: italic;
+  font-weight: 600;
+}
+
+.font-mono {
+  font-family: "IBM Plex Mono", monospace;
+}
+
+.wordmark {
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  font-family: "Fraunces", serif;
+  font-style: italic;
+  font-weight: 600;
+  font-size: 1.3rem;
+  color: var(--bs-emphasis-color);
+}
+
+.ember-dot {
+  width: 8px;
+  height: 8px;
+  border-radius: 50%;
+  background: #ebbaf2;
+  box-shadow: 0 0 0 0 rgba(235, 186, 242, 0.5);
+  animation: ember-pulse 2.4s ease-in-out infinite;
+  flex-shrink: 0;
+}
+
+@keyframes ember-pulse {
+  0%,
+  100% {
+    box-shadow: 0 0 0 0 rgba(235, 186, 242, 0.45);
+  }
+  50% {
+    box-shadow: 0 0 0 6px rgba(235, 186, 242, 0);
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .ember-dot {
+    animation: none;
+  }
+}
+
+/* Small lift on hover for clickable project cards (Bootstrap's .card has no hover state) */
+.project-card {
+  cursor: pointer;
+  transition:
+    transform 0.15s ease,
+    box-shadow 0.15s ease;
+}
+.project-card:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 8px 24px rgba(0, 0, 0, 0.35);
+}
+
+/* Gradient panel for the auth split screen */
+.auth-visual {
+  background: linear-gradient(
+    160deg,
+    var(--bs-body-bg) 0%,
+    var(--bs-primary) 140%
+  );
+}
+
+@media (min-width: 992px) {
+  .main-content {
+    margin-left: 240px;
+  }
+}
+
+.list-group-item-action:hover {
+  color: var(--bs-emphasis-color);
+}
+
+.offcanvas {
+  background-color: var(--bs-tertiary-bg);
+  color: var(--bs-body-color);
+}
