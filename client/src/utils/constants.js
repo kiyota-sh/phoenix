@@ -1,19 +1,21 @@
 export const PROJECT_STATUS = {
-  ACTIVE: "active",
-  ABANDONED: "abandoned",
-  COMPLETED: "completed",
+  ACTIVE: "activo",
+  ABANDONED: "abandonado",
+  COMPLETED: "finalizado",
+  ARCHIVED: "archivado",
 };
 
 export const PRIORITY = {
-  LOW: "low",
-  MEDIUM: "medium",
-  HIGH: "high",
+  LOW: "baja",
+  MEDIUM: "media",
+  HIGH: "alta",
 };
 
 export const STATUS_LABELS = {
   [PROJECT_STATUS.ACTIVE]: "Active",
   [PROJECT_STATUS.ABANDONED]: "Abandoned",
   [PROJECT_STATUS.COMPLETED]: "Completed",
+  [PROJECT_STATUS.ARCHIVED]: "Archived",
 };
 
 export const PRIORITY_LABELS = {
@@ -26,4 +28,5 @@ export const STATUS_BADGE_CLASS = {
   [PROJECT_STATUS.ACTIVE]: "text-bg-success",
   [PROJECT_STATUS.ABANDONED]: "text-bg-warning",
   [PROJECT_STATUS.COMPLETED]: "text-bg-info",
+  [PROJECT_STATUS.ARCHIVED]: "text-bg-secondary",
 };

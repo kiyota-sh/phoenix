@@ -8,8 +8,8 @@
 
 <body>
     <script type="module">
-        import { authService } from '../api/authService.js';
-        import { PATHS } from '../routes/paths.js';
+        import { authService } from '/client/src/api/services/authService.js';
+        import { PATHS } from '/client/src/routes/paths.js';
 
         authService.getProfile()
             .then(() => { window.location.href = PATHS.DASHBOARD; })

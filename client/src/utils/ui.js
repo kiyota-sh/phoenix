@@ -1,14 +1,8 @@
-// Shared UI helpers. Alerts and spinners are built with Bootstrap's own
+import { showSuccessToast, showErrorToast } from "./toast.js";
 
 export function showAlert(containerId, message, type = "danger") {
-  const container = document.getElementById(containerId);
-  if (!container) return;
-  container.innerHTML = `
-    <div class="alert alert-${type} alert-dismissible fade show" role="alert">
-      ${message}
-      <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
-    </div>
-  `;
+  if (type === "success") showSuccessToast(message);
+  else showErrorToast(message);
 }
 
 export function showLoading(containerId) {

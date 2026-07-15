@@ -1,4 +1,3 @@
-// src/app/projects/projects.js
 import { requireAuth } from "../../utils/authGuard.js";
 import { projectService } from "../../api/services/projectService.js";
 import { categoryService } from "../../api/services/categoryService.js";
@@ -19,7 +18,7 @@ const filterCategory = document.getElementById("filterCategory");
 const filterStatus = document.getElementById("filterStatus");
 const filterPriority = document.getElementById("filterPriority");
 
-// Note: there's no logout wiring here anymore — <nav-sidebar> owns it now.
+let categoryMap = {};
 
 function debounce(fn, delay = 350) {
   let timer;
@@ -33,6 +32,7 @@ async function loadCategories() {
   try {
     const categories = await categoryService.getAll();
     categories.forEach((cat) => {
+      categoryMap[String(cat.id)] = cat.name;
       const option = document.createElement("option");
       option.value = cat.id;
       option.textContent = cat.name;
@@ -52,12 +52,6 @@ function getCurrentFilters() {
   };
 }
 
-function calculateDaysAgo(dateStr) {
-  if (!dateStr) return null;
-  const diffMs = Date.now() - new Date(dateStr).getTime();
-  return Math.floor(diffMs / (1000 * 60 * 60 * 24));
-}
-
 function renderProjects(projects) {
   if (!projects || projects.length === 0) {
     resultsContainer.innerHTML = `
@@ -71,13 +65,22 @@ function renderProjects(projects) {
 
   const cards = projects
     .map((project) => {
-      const daysAgo = calculateDaysAgo(project.lastProgressDate);
       const badgeClass =
         STATUS_BADGE_CLASS[project.status] || "text-bg-success";
       const statusLabel = STATUS_LABELS[project.status] || project.status;
       const priorityLabel =
         PRIORITY_LABELS[project.priority] || project.priority;
-      const progress = project.progress ?? 0;
+      const categoryName =
+        project.categoryName ||
+        categoryMap[String(project.categoryId)] ||
+        "No category";
+
+      const hasTasks =
+        project.progress !== null && project.progress !== undefined;
+      const progressValue = hasTasks ? project.progress : 0;
+      const progressLabel = hasTasks
+        ? `${progressValue}% complete`
+        : "No tasks yet";
 
       return `
         <div class="col">
@@ -86,18 +89,18 @@ function renderProjects(projects) {
               <div class="d-flex justify-content-between align-items-start mb-2">
                 <div>
                   <h3 class="h6 card-title mb-1">${escapeHtml(project.name)}</h3>
-                  <p class="card-subtitle small text-secondary text-uppercase mb-0">${escapeHtml(project.categoryName || "No category")}</p>
+                  <p class="card-subtitle small text-secondary text-uppercase mb-0">${escapeHtml(categoryName)}</p>
                 </div>
                 <span class="badge ${badgeClass} rounded-pill">
                   <i class="bi bi-circle-fill me-1" style="font-size:.5rem;"></i>${statusLabel}
                 </span>
               </div>
               <div class="progress mb-2" style="height: 6px;">
-                <div class="progress-bar" style="width: ${progress}%;"></div>
+                <div class="progress-bar" style="width: ${progressValue}%;"></div>
               </div>
               <div class="d-flex justify-content-between small font-mono text-secondary">
                 <span>${priorityLabel} priority</span>
-                <span>${daysAgo !== null ? `${daysAgo}d ago` : "no progress yet"}</span>
+                <span>${progressLabel}</span>
               </div>
             </div>
           </div>
@@ -121,7 +124,7 @@ async function loadProjects() {
     const data = filters.query
       ? await projectService.search(filters.query, filters)
       : await projectService.getAll(filters);
-    renderProjects(data.items || data);
+    renderProjects(data);
   } catch (err) {
     showAlert("alertContainer", err.message);
     resultsContainer.innerHTML = "";
@@ -134,5 +137,9 @@ filterPriority.addEventListener("change", loadProjects);
 filterQuery.addEventListener("input", debounce(loadProjects));
 filtersForm.addEventListener("submit", (e) => e.preventDefault());
 
-loadCategories();
-loadProjects();
+async function init() {
+  await loadCategories();
+  await loadProjects();
+}
+
+init();

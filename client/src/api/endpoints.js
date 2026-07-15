@@ -3,49 +3,48 @@ const API_PREFIX = "/api/v1";
 export const ENDPOINTS = {
   AUTH: {
     LOGIN: `${API_PREFIX}/auth/login`,
-    REGISTER: `${API_PREFIX}/auth/register`,
+    REGISTER: `${API_PREFIX}/auth/registro`,
     LOGOUT: `${API_PREFIX}/auth/logout`,
-    FORGOT_PASSWORD: `${API_PREFIX}/auth/forgot-password`,
   },
   USERS: {
-    PROFILE: `${API_PREFIX}/users/profile`,
+    PROFILE: `${API_PREFIX}/usuarios/perfil`,
+    PASSWORD: `${API_PREFIX}/usuarios/password`,
   },
   PROJECTS: {
-    BASE: `${API_PREFIX}/projects`,
-    DETAIL: (id) => `${API_PREFIX}/projects/${id}`,
-    ARCHIVE: (id) => `${API_PREFIX}/projects/${id}/archive`,
-    STATUS: (id) => `${API_PREFIX}/projects/${id}/status`,
-    REOPEN: (id) => `${API_PREFIX}/projects/${id}/reopen`,
-    SEARCH: `${API_PREFIX}/projects/search`,
+    BASE: `${API_PREFIX}/proyectos`,
+    DETAIL: (id) => `${API_PREFIX}/proyectos/${id}`,
+    ARCHIVE: (id) => `${API_PREFIX}/proyectos/${id}/archivar`,
+    STATUS: (id) => `${API_PREFIX}/proyectos/${id}/estado`,
+    REOPEN: (id) => `${API_PREFIX}/proyectos/${id}/reabrir`,
   },
   PROGRESS: {
-    BY_PROJECT: (projectId) => `${API_PREFIX}/projects/${projectId}/progress`,
-    DETAIL: (id) => `${API_PREFIX}/progress/${id}`,
+    BY_PROJECT: (projectId) => `${API_PREFIX}/proyectos/${projectId}/avances`,
+    DETAIL: (id) => `${API_PREFIX}/avances/${id}`, // PUT/DELETE live at top level, not nested
   },
   TASKS: {
-    BY_PROJECT: (projectId) => `${API_PREFIX}/projects/${projectId}/tasks`,
-    DETAIL: (id) => `${API_PREFIX}/tasks/${id}`,
-    TOGGLE: (id) => `${API_PREFIX}/tasks/${id}/toggle`,
+    BY_PROJECT: (projectId) => `${API_PREFIX}/proyectos/${projectId}/tareas`,
+    DETAIL: (id) => `${API_PREFIX}/tareas/${id}`,
+    COMPLETE: (id) => `${API_PREFIX}/tareas/${id}/completar`,
   },
   CATEGORIES: {
-    BASE: `${API_PREFIX}/categories`,
-    DETAIL: (id) => `${API_PREFIX}/categories/${id}`,
+    BASE: `${API_PREFIX}/categorias`,
+    DETAIL: (id) => `${API_PREFIX}/categorias/${id}`,
   },
   CATALOGS: {
-    ABANDON_REASONS: `${API_PREFIX}/catalogs/abandon-reasons`,
+    ABANDON_REASONS: `${API_PREFIX}/catalogos/motivos-abandono`,
   },
   DASHBOARD: {
-    SUMMARY: `${API_PREFIX}/dashboard/summary`,
-    RECENT_ACTIVITY: `${API_PREFIX}/dashboard/recent-activity`,
-    UPCOMING_GOALS: `${API_PREFIX}/dashboard/upcoming-goals`,
+    SUMMARY: `${API_PREFIX}/dashboard/resumen`,
+    RECENT_ACTIVITY: `${API_PREFIX}/dashboard/actividad-reciente`,
+    UPCOMING_GOALS: `${API_PREFIX}/dashboard/proximos-objetivos`,
   },
   STATISTICS: {
-    BY_CATEGORY: `${API_PREFIX}/statistics/by-category`,
-    ABANDON_REASONS: `${API_PREFIX}/statistics/abandon-reasons`,
-    AVG_TIME_TO_ABANDON: `${API_PREFIX}/statistics/average-time-to-abandon`,
-    COMPLETED_BY_YEAR: `${API_PREFIX}/statistics/completed-by-year`,
+    BY_CATEGORY: `${API_PREFIX}/estadisticas/por-categoria`,
+    ABANDON_REASONS: `${API_PREFIX}/estadisticas/motivos-abandono`,
+    AVG_TIME_TO_ABANDON: `${API_PREFIX}/estadisticas/tiempo-promedio-abandono`,
+    COMPLETED_BY_YEAR: `${API_PREFIX}/estadisticas/completados-por-anio`,
   },
   HISTORY: {
-    BY_PROJECT: (projectId) => `${API_PREFIX}/projects/${projectId}/history`,
+    BY_PROJECT: (projectId) => `${API_PREFIX}/proyectos/${projectId}/historial`,
   },
 };
