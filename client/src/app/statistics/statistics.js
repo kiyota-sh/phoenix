@@ -13,9 +13,23 @@ const VARIANTS = [
   "bg-secondary",
 ];
 
-function renderBarChart(containerId, data, variant = "bg-primary") {
+function emptyState(message) {
+  return `<p class="text-secondary small mb-0">${message}</p>`;
+}
+
+function renderBarChart(
+  containerId,
+  data,
+  variant = "bg-primary",
+  emptyMessage = "No data yet.",
+) {
+  const container = document.getElementById(containerId);
+  if (!data || data.length === 0) {
+    container.innerHTML = emptyState(emptyMessage);
+    return;
+  }
   const max = Math.max(...data.map((d) => d.value), 1);
-  document.getElementById(containerId).innerHTML = data
+  container.innerHTML = data
     .map(
       (d) => `
       <div class="mb-3">
@@ -29,7 +43,12 @@ function renderBarChart(containerId, data, variant = "bg-primary") {
     .join("");
 }
 
-function renderStackedBar(containerId, data) {
+function renderStackedBar(containerId, data, emptyMessage = "No data yet.") {
+  const container = document.getElementById(containerId);
+  if (!data || data.length === 0) {
+    container.innerHTML = emptyState(emptyMessage);
+    return;
+  }
   const total = data.reduce((sum, d) => sum + d.value, 0) || 1;
   const bars = data
     .map(
@@ -43,8 +62,7 @@ function renderStackedBar(containerId, data) {
         `<span class="badge ${VARIANTS[i % VARIANTS.length]} bg-opacity-50 me-2 mb-1">${escapeHtml(String(d.label))} (${d.value})</span>`,
     )
     .join("");
-  document.getElementById(containerId).innerHTML =
-    `<div class="progress mb-3" style="height: 22px;">${bars}</div><div>${legend}</div>`;
+  container.innerHTML = `<div class="progress mb-3" style="height: 22px;">${bars}</div><div>${legend}</div>`;
 }
 
 async function init() {
@@ -56,23 +74,29 @@ async function init() {
         statisticsService.getCompletedByYear(),
         statisticsService.getAvgTimeToAbandon(),
       ]);
+
     renderBarChart(
       "chartCategory",
       byCategory.map((i) => ({ label: i.category, value: i.total })),
       "bg-primary",
+      "No projects with a category yet.",
     );
     renderStackedBar(
       "chartReasons",
       abandonReasons.map((i) => ({ label: i.reason, value: i.total })),
+      "No projects have been abandoned yet.",
     );
     renderBarChart(
       "chartCompleted",
       completedByYear.map((i) => ({ label: i.year, value: i.total })),
       "bg-success",
+      "No projects have been marked completed yet.",
     );
-    document.getElementById("avgTimeValue").textContent = avgTime.days
-      ? `${avgTime.days} days`
-      : "—";
+
+    document.getElementById("avgTimeValue").textContent =
+      avgTime.days !== null && avgTime.days !== undefined
+        ? `${avgTime.days} days`
+        : "—";
   } catch (err) {
     showAlert("alertContainer", err.message);
   }

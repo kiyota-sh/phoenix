@@ -1,10 +1,10 @@
-import { PATHS } from "../routes/paths.js";
-
-const BASE_URL = "http://localhost:3000";
+import { PATHS, goTo } from "../routes/paths.js";
+import { getToken, clearToken } from "../utils/tokenStorage.js";
+import { showSuccessToast } from "../utils/toast.js";
+import { API_BASE_URL } from "../utils/config.js";
 
 async function request(method, url, { body, params } = {}) {
-  let fullUrl = `${BASE_URL}${url}`;
-
+  let fullUrl = `${API_BASE_URL}${url}`;
   if (params) {
     const cleanParams = Object.fromEntries(
       Object.entries(params).filter(
@@ -15,36 +15,45 @@ async function request(method, url, { body, params } = {}) {
     if (query) fullUrl += `?${query}`;
   }
 
+  const headers = { "Content-Type": "application/json" };
+  const token = getToken();
+  if (token) headers.Authorization = `Bearer ${token}`;
+
   let response;
   try {
     response = await fetch(fullUrl, {
       method,
-      credentials: "include", // sends/receives the session cookie
-      headers: { "Content-Type": "application/json" },
+      headers,
       body: body !== undefined ? JSON.stringify(body) : undefined,
     });
   } catch (networkError) {
     throw { status: 0, message: "Could not connect to the server" };
   }
 
-  if (response.status === 401) {
-    window.location.href = PATHS.LOGIN;
-    throw { status: 401, message: "Session expired" };
-  }
-
   const contentType = response.headers.get("content-type") || "";
-  const data = contentType.includes("application/json")
+  const envelope = contentType.includes("application/json")
     ? await response.json().catch(() => null)
     : null;
+
+  if (response.status === 401) {
+    clearToken();
+    goTo(PATHS.LOGIN);
+    throw { status: 401, message: envelope?.message || "Session expired" };
+  }
 
   if (!response.ok) {
     throw {
       status: response.status,
-      message: data?.message || "Something went wrong",
+      message: envelope?.message || "Something went wrong",
+      errors: envelope?.errors,
     };
   }
 
-  return data;
+  if (method !== "GET" && envelope?.message) {
+    showSuccessToast(envelope.message);
+  }
+
+  return envelope?.data ?? null;
 }
 
 export const fetchClient = {

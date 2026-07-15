@@ -1,28 +1,27 @@
+const BASE_PATH = "/client/src"
+
 export const PATHS = {
-  LOGIN: "/login.html",
-  REGISTER: "/register.html",
+  LOGIN: `${BASE_PATH}/app/auth/login.html`,
+  REGISTER: `${BASE_PATH}/app/auth/register.html`,
 
-  DASHBOARD: "/dashboard.html",
+  DASHBOARD: `${BASE_PATH}/app/dashboard/dashboard.html`,
 
-  PROJECTS: "/projects.html",
-  PROJECT_DETAIL: "/project-detail.html", // uses ?id=123
-  PROJECT_NEW: "/project-form.html", // no query = create mode
-  PROJECT_EDIT: "/project-form.html", // with ?id=123 = edit mode
+  PROJECTS: `${BASE_PATH}/app/projects/projects.html`,
+  PROJECT_DETAIL: `${BASE_PATH}/app/projects/project-detail.html`, // uses ?id=123
+  PROJECT_NEW: `${BASE_PATH}/app/projects/project-form.html`, // no query = create mode
+  PROJECT_EDIT: `${BASE_PATH}/app/projects/project-form.html`, // with ?id=123 = edit mode
 
-  CATEGORIES: "/categories.html",
-  STATISTICS: "/statistics.html",
-  SEARCH: "/search.html",
-  PROFILE: "/profile.html",
+  CATEGORIES: `${BASE_PATH}/app/categories/categories.html`,
+  STATISTICS: `${BASE_PATH}/app/statistics/statistics.html`,
+  SEARCH: `${BASE_PATH}/app/search/search.html`,
+  PROFILE: `${BASE_PATH}/app/profile/profile.html`,
 };
 
-// Navigates while attaching query params
-// e.g. goTo(PATHS.PROJECT_DETAIL, { id: 5 }) -> /project-detail.html?id=5
 export function goTo(path, params = {}) {
   const query = new URLSearchParams(params).toString();
   window.location.href = query ? `${path}?${query}` : path;
 }
 
-// Reads a single query param from the current URL
 export function getQueryParam(key) {
   const params = new URLSearchParams(window.location.search);
   return params.get(key);

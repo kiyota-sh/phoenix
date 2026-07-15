@@ -1,4 +1,3 @@
-// src/app/projects/projects.js
 import { requireAuth } from "../../utils/authGuard.js";
 import { projectService } from "../../api/services/projectService.js";
 import { categoryService } from "../../api/services/categoryService.js";

@@ -59,7 +59,7 @@ async function performSearch() {
   showLoading("resultsContainer");
   try {
     const data = await projectService.search(query, { status });
-    renderResults(data.items || data);
+    renderResults(data);
   } catch (err) {
     showAlert("alertContainer", err.message);
     resultsContainer.innerHTML = "";
@@ -70,3 +70,5 @@ form.addEventListener("submit", (e) => {
   e.preventDefault();
   performSearch();
 });
+
+performSearch();
